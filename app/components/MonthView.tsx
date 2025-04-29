@@ -1,9 +1,8 @@
 "use client";
 
-import { useState } from "react";
-import DayList from "./DayList";
+import { useContext, useState } from "react";
 import DayView from "./DayView";
-
+import { ThemeContext } from "../utils/ThemeContext";
 
 export default function MonthView() {
 	const [month, setMonth] = useState(new Date().getMonth());
@@ -12,6 +11,7 @@ export default function MonthView() {
 	const firstDayOfWeek = firstDayOfMonth.getDay();
 	const lastMonth = new Date(year, month, 0);
 	const lastDateOfLastMonth = lastMonth.getDate();
+	const { theme } = useContext(ThemeContext);
 
 	function getDay(i: number) {
 		let day = i - firstDayOfWeek + 1;
@@ -19,40 +19,78 @@ export default function MonthView() {
 		if (i < firstDayOfWeek) {
 			day = lastDateOfLastMonth - firstDayOfWeek + i + 1;
 			dark = true;
-		} else if (i > new Date(year, month + 1, 0).getDate() + firstDayOfWeek - 1) {
+		} else if (
+			i >
+			new Date(year, month + 1, 0).getDate() + firstDayOfWeek - 1
+		) {
 			day = i - new Date(year, month + 2, 0).getDate() - firstDayOfWeek + 2;
 			dark = true;
 		}
 
-		return (
-			<DayView number={day} key={i} dark={dark}/>
-		)
+		return <DayView number={day} key={i} dark={dark} />;
+	}
+
+	function decreaseMonth() {
+		if(month == 0) {
+			setYear(year-1)
+			setMonth(12)
+		} else {
+			setMonth(month-1)
+		}
+	}
+
+	function increaseMonth() {
+		if (month == 12) {
+			setYear(year + 1);
+			setMonth(0);
+		} else {
+			setMonth(month + 1);
+		}
 	}
 
 	return (
-		<div className="flex border-2 border-gray-300 rounded-xl mx-8 h-full my-16 w-full max-h-[calc(100vh-5rem)] flex-col">
-			<div className="text-center p-4 border-b-2 border-gray-300 w-full h-fit text-2xl">
-				{new Date(year, month).toLocaleString(undefined, {
-					month: "long",
-					year: "numeric",
-				})}
+		<div
+			className={`flex border-10 border-white rounded-xl mx-8 h-full my-16 w-full max-h-[calc(100vh-5rem)] flex-col`}
+			data-theme={theme?.name}
+			style={{
+				backgroundColor: "var(--color-secondary)",
+			}}
+		>
+			<div
+				className="text-center p-4 border-b-2 border-black h-fit text-2xl mx-4 flex-row flex justify-center space-x-10"
+				style={{
+					color: "var(--color-primary)",
+				}}
+			>
+				<button onClick={decreaseMonth} className="hover:cursor-grab">
+					{"<"}
+				</button>
+				<div>
+					{new Date(year, month).toLocaleString(undefined, {
+						month: "long",
+						year: "numeric",
+					})}
+				</div>
+				<button onClick={increaseMonth} className="hover:cursor-grab">
+					{">"}
+				</button>
 			</div>
-			<div className="flex flex-row w-full h-fit">
+			<div className="flex flex-row h-fit mx-4">
 				{Array.from({ length: 7 }, (_, i) => (
 					<div
 						key={i}
-						className="text-center border-b-2 border-gray-300 p-2 h-fit w-full"
+						className="text-center border-b-2 border-black p-2 h-fit w-full text-2xl"
+						style={{
+							color: "var(--color-primary)",
+						}}
 					>
-						{["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][i]}
+						{["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"][i]}
 					</div>
 				))}
 			</div>
 			<div className="grid grid-cols-7 w-full h-full">
-				{Array.from({ length: 42 }, (_, i) => (
-					getDay(i)
-				))}
+				{Array.from({ length: 42 }, (_, i) => getDay(i))}
 			</div>
 		</div>
 	);
 }
-

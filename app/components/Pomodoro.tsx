@@ -1,21 +1,23 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useContext, /*useEffect,*/ useState } from "react";
+import { ThemeContext } from "../utils/ThemeContext";
 
 export default function Pomodoro() {
-	const [start, setStart] = useState(false);
+	// const [start, setStart] = useState(false);
 	const [timer, setTimer] = useState(0);
-	const [focusTime, setFocusTime] = useState(25); // Default focus time in minutes
-	const [breakTime, setBreakTime] = useState(5); // Default break time in minutes
-	const [isBreak, setIsBreak] = useState(false);
+	// const [focusTime, setFocusTime] = useState(25); // Default focus time in minutes
+	// const [breakTime, setBreakTime] = useState(5); // Default break time in minutes
+	// const [isBreak, setIsBreak] = useState(false);
 	const timerDisplay = () => {
+		setTimer(0);
 		let displayTimer = "";
 		if (timer / 60 >= 10) {
 			displayTimer += Math.floor(timer / 60);
 		} else {
 			displayTimer += "0" + Math.floor(timer / 60);
 		}
-		displayTimer += ":";
+		displayTimer += " : ";
 		if (timer % 60 >= 10) {
 			displayTimer += timer % 60;
 		} else {
@@ -24,129 +26,50 @@ export default function Pomodoro() {
 		return displayTimer;
 	};
 
-	useEffect(() => {
-		let interval: NodeJS.Timeout | null = null;
+	// useEffect(() => {
+	// 	let interval: NodeJS.Timeout | null = null;
 
-		if (start) {
-			interval = setInterval(() => {
-				setTimer((prevTimer) => prevTimer + 1); // Use functional update to ensure the latest state
-			}, 1000);
-		} else if (!start && interval) {
-			clearInterval(interval); // Cleanup interval when stopped
-		}
+	// 	if (start) {
+	// 		interval = setInterval(() => {
+	// 			setTimer((prevTimer) => prevTimer + 1); // Use functional update to ensure the latest state
+	// 		}, 1000);
+	// 	} else if (!start && interval) {
+	// 		clearInterval(interval); // Cleanup interval when stopped
+	// 	}
 
-		return () => {
-			if (interval) clearInterval(interval); // Cleanup on component unmount
-		};
-	}, [start]); // Re-run effect when `start` changes
+	// 	return () => {
+	// 		if (interval) clearInterval(interval); // Cleanup on component unmount
+	// 	};
+	// }, [start]); // Re-run effect when `start` changes
 
-	const startOnClick = () => {
-		setStart(true);
-	};
+	// const startOnClick = () => {
+	// 	setStart(true);
+	// };
+
+	const { theme } = useContext(ThemeContext);
+	console.log(theme?.logoProperty);
 
 	return (
-		<div className="flex flex-col h-full max-h-screen mb-4 items-center rounded bg-red-500 border-2 mx-8">
-			<div>Pomodoro</div>
-			<div>{timerDisplay()}</div>
-			<div>
-				{isBreak ? "Break Time" : "Focus Time"}: {isBreak ? breakTime : focusTime} minutes
-			</div>
-			<div>
-				<button
-					onClick={() => {
-						setFocusTime((prev) => (prev > 1 ? prev - 1 : prev));
-					}}
-					className="bg-blue-500 text-white px-2 py-1 rounded"
-				>
-					Decrease Focus Time
-				</button>
-				<button
-					onClick={() => {
-						setFocusTime((prev) => prev + 1);
-					}}
-					className="bg-blue-500 text-white px-2 py-1 rounded"
-				>
-					Increase Focus Time
-				</button>
-				<button
-					onClick={() => {
-						setBreakTime((prev) => (prev > 1 ? prev - 1 : prev));
-					}}
-					className="bg-blue-500 text-white px-2 py-1 rounded"
-				>
-					Decrease Break Time
-				</button>
-				<button
-					onClick={() => {
-						setBreakTime((prev) => prev + 1);
-					}}
-					className="bg-blue-500 text-white px-2 py-1 rounded"
-				>
-					Increase Break Time
-				</button>
-			</div>
-			<div>
-				<button
-					onClick={() => {
-						setIsBreak((prev) => !prev);
-						setTimer(0);
-					}}
-					className="bg-blue-500 text-white px-2 py-1 rounded"
-				>
-					Toggle Break/Focus
-				</button>
-			</div>
-			<div>
-				<button
-					onClick={() => {
-						setTimer(0);
-						setStart(false);
-						setIsBreak(false);
-						setFocusTime(25);
-						setBreakTime(5);
-					}}
-					className="bg-blue-500 text-white px-2 py-1 rounded"
-				>
-					Reset Timer
-				</button>
-			</div>
-			<div>
-				<button
-					onClick={() => {
-						setTimer(0);
-						setStart(false);
-						setIsBreak(false);
-						setFocusTime(25);
-						setBreakTime(5);
-						setStart(true);
-					}}
-					className="bg-blue-500 text-white px-2 py-1 rounded"
-				>
-					Start Timer
-				</button>
-			</div>
-			<div>
-				<button
-					onClick={() => {
-						setTimer(0);
-						setStart(false);
-						setIsBreak(false);
-						setFocusTime(25);
-						setBreakTime(5);
-						setStart(true);
-						setIsBreak(true);
-					}}
-					className="bg-blue-500 text-white px-2 py-1 rounded"
-				>
-					Start Break Timer
-				</button>
-			</div>
+		<div>
+			<div
+				className={`flex flex-col mb-4 items-center justify-center rounded mx-8 ${theme?.logoProperty} bg-contain bg-no-repeat h-36 bg-center`}
+				data-theme={theme?.name}
+			>
+				{/* <div>Pomodoro</div> */}
+				<div className="text-white rounded-4xl px-4 text-xl" style={{
+					backgroundColor: "var(--color-primary)"
+				}}>{timerDisplay()}</div>
+				{/* <div>
+					{isBreak ? "Break Time" : "Focus Time"}:{" "}
+					{isBreak ? breakTime : focusTime} minutes
+				</div>
 
-			{start ? (
-				<button onClick={() => setStart(!start)}>Stop Timer</button>
-			) : (
-				<button onClick={startOnClick}>Start Timer</button>
-			)}
+				{start ? (
+					<button onClick={() => setStart(!start)}>Stop Timer</button>
+				) : (
+					<button onClick={startOnClick}>Start Timer</button>
+				)} */}
+			</div>
 		</div>
 	);
 }

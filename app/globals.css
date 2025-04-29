@@ -2,7 +2,7 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #171717; 
 }
 
 @theme inline {
@@ -10,6 +10,12 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+}
+
+@theme {
+  --color-dark-blue: #2C3863;
+  --color-blue: #E9FAFF;
+  --color-light-blue: #DEEEF4;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,5 +28,22 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Calistoga, Arial, Helvetica, sans-serif;
+}
+
+@layer base {
+  [data-theme='drishti'] {
+    --color-primary: #2C3863;
+    --color-secondary: #E9FAFF;
+    --color-tertiary: #DEEEF4;
+    --background: "background-image: url('/drishtitheme/WaterBackground.png')";
+  }
+
+  [data-theme='rainforest'] {
+    --color-primary: #56d0a0;
+  }
+
+  [data-theme='candy'] {
+    --color-primary: #f9a8d4;
+  }
 }
