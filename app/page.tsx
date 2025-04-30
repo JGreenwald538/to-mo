@@ -16,20 +16,26 @@ const drishtiTheme: Theme = {
 export default function Home() {
 	const [theme, setTheme] = useState(drishtiTheme);
 	return (
-		<ThemeContext.Provider value={{theme, setTheme}}>
+		<ThemeContext.Provider value={{ theme, setTheme }}>
 			<div
-				className={`h-screen w-screen flex items-center ${theme.backgroundProperty}`}
+				className={`h-screen w-screen flex items-center ${theme.backgroundProperty} space-x-8 px-8 bg-cover py-10`}
 				data-theme={theme.name}
 				style={{
 					backgroundColor: "rgba(255,255,255,0.5)",
-    				backgroundBlendMode: "lighten"
+					backgroundBlendMode: "lighten",
 				}}
 			>
-				<div className="flex flex-col h-full py-10">
+				<div className="flex flex-col h-full">
 					<Pomodoro />
 					<DayList />
 				</div>
-				<MonthView />
+				<div className="w-full h-full flex">
+					<MonthView />
+				</div>
+				<div className="h-full flex flex-col space-y-3">
+					<DayList />
+					<DayList />
+				</div>
 			</div>
 		</ThemeContext.Provider>
 	);

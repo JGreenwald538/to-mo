@@ -14,7 +14,7 @@ export default function DayView({
 			className={
 				`flex justify-end` +
 				(dark ? " opacity-50" : " ") +
-				` border-b-2 border-gray-300 p-2 bg-white rounded-3xl m-4`
+				` border-b-2 border-gray-300 p-2 bg-white rounded-3xl mx-4 my-3`
 			}
 		>
 			<div

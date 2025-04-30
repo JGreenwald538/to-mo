@@ -48,9 +48,9 @@ export default function Pomodoro() {
 	const { theme } = useContext(ThemeContext);
 
 	return (
-		<div>
+		<div className="flex flex-col space-y-2 mb-4">
 			<div
-				className={`flex flex-col mb-4 items-center justify-center rounded mx-8 ${theme?.logoProperty} bg-contain bg-no-repeat h-36 bg-center`}
+				className={`flex flex-col items-center justify-center rounded mx-8 ${theme?.logoProperty} bg-contain bg-no-repeat h-36 bg-center`}
 				data-theme={theme?.name}
 			>
 				{/* <div>Pomodoro</div> */}
@@ -68,6 +68,11 @@ export default function Pomodoro() {
 					<button onClick={startOnClick}>Start Timer</button>
 				)} */}
 			</div>
+			<button className="self-center text-lg border-4 border-white w-fit rounded-4xl px-6" style={{
+				backgroundColor: "var(--color-secondary)"
+			}}>
+				Set TO-MO
+			</button>
 		</div>
 	);
 }

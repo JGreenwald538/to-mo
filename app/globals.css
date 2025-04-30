@@ -36,7 +36,7 @@ body {
     --color-primary: #2C3863;
     --color-secondary: #E9FAFF;
     --color-tertiary: #DEEEF4;
-    --background: "background-image: url('/drishtitheme/WaterBackground.png')";
+    --color-quartenary: #92B3C4;
   }
 
   [data-theme='rainforest'] {

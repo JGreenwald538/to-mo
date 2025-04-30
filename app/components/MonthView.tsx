@@ -50,7 +50,7 @@ export default function MonthView() {
 
 	return (
 		<div
-			className={`flex border-10 border-white rounded-xl mx-8 h-full my-16 w-full max-h-[calc(100vh-5rem)] flex-col`}
+			className={`flex border-10 border-white rounded-3xl h-full w-full flex-col`}
 			data-theme={theme?.name}
 			style={{
 				backgroundColor: "var(--color-secondary)",
