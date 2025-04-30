@@ -3,7 +3,7 @@ import TodoItem from "./TodoItem";
 export default function DayView() {
 	return (
 		<div
-			className="border-10 border-gray-300 rounded-4xl flex flex-col justify-self-end overflow-scroll"
+			className="border-10 border-gray-300 rounded-4xl flex flex-col justify-self-end overflow-scroll h-full items-center"
 			style={{
 				backgroundColor: "var(--color-primary)",
 				borderColor: "var(--color-secondary)",
@@ -11,7 +11,7 @@ export default function DayView() {
 			}}
 		>
 			<div
-				className="text-center pt-4 text-white border-b-1 w-fit self-center text-xl"
+				className="text-center pt-4 text-white border-b-1 w-fit self-center text-xl mx-14"
 				style={{
 					borderColor: "var(--color-secondary)",
 				}}
@@ -23,26 +23,20 @@ export default function DayView() {
 				})}
 			</div>
 			<div
-				className="flex flex-col overflow-y-scroll h-full p-4 rounded-t-xl rounded-b-xl"
+				className="flex flex-col overflow-y-scroll h-full py-4 rounded-t-xl rounded-b-xl flex-1"
 				style={{
 					scrollbarColor: "var(--color-secondary)",
 				}}
 			>
-				<TodoItem name="Todo 1" ett={30} dueDate={new Date()} />
-				<TodoItem name="Todo 2" ett={30} dueDate={new Date()} />
-				<TodoItem name="Todo 3" ett={30} dueDate={new Date()} />
-				<TodoItem name="Todo 1" ett={30} dueDate={new Date()} />
-				<TodoItem name="Todo 2" ett={30} dueDate={new Date()} />
-				<TodoItem name="Todo 3" ett={30} dueDate={new Date()} />
-				<TodoItem name="Todo 1" ett={30} dueDate={new Date()} />
-				<TodoItem name="Todo 2" ett={30} dueDate={new Date()} />
-				<TodoItem name="Todo 3" ett={30} dueDate={new Date()} />
-				<TodoItem name="Todo 1" ett={30} dueDate={new Date()} />
-				<TodoItem name="Todo 2" ett={30} dueDate={new Date()} />
-				<TodoItem name="Todo 3" ett={30} dueDate={new Date()} />
-				<TodoItem name="Todo 1" ett={30} dueDate={new Date()} />
-				<TodoItem name="Todo 2" ett={30} dueDate={new Date()} />
-				<TodoItem name="Todo 3" ett={30} dueDate={new Date()} />
+				<TodoItem task={{
+					name: "asdasd",
+					minutes: 30,
+					date: new Date(),
+					type: "task",
+					status: false,
+					description: "asdasd",
+
+				}} />
 			</div>
 			<button
 				className="text-white py-1 w-fit my-2 rounded-3xl px-8 self-center text-2xl border-4 border-white"
