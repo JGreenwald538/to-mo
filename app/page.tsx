@@ -19,7 +19,7 @@ export default function Home() {
 		<ThemeContext.Provider value={{theme, setTheme}}>
 			<div
 				className={`h-screen w-screen flex items-center ${theme.backgroundProperty}`}
-				data-theme={theme}
+				data-theme={theme.name}
 				style={{
 					backgroundColor: "rgba(255,255,255,0.5)",
     				backgroundBlendMode: "lighten"

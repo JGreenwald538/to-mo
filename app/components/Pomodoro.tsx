@@ -5,12 +5,11 @@ import { ThemeContext } from "../utils/ThemeContext";
 
 export default function Pomodoro() {
 	// const [start, setStart] = useState(false);
-	const [timer, setTimer] = useState(0);
+	const [timer] = useState(0);
 	// const [focusTime, setFocusTime] = useState(25); // Default focus time in minutes
 	// const [breakTime, setBreakTime] = useState(5); // Default break time in minutes
 	// const [isBreak, setIsBreak] = useState(false);
 	const timerDisplay = () => {
-		setTimer(0);
 		let displayTimer = "";
 		if (timer / 60 >= 10) {
 			displayTimer += Math.floor(timer / 60);
@@ -47,7 +46,6 @@ export default function Pomodoro() {
 	// };
 
 	const { theme } = useContext(ThemeContext);
-	console.log(theme?.logoProperty);
 
 	return (
 		<div>
