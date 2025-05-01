@@ -1,7 +1,7 @@
 "use client";
 
 import { useContext, /*useEffect,*/ useState } from "react";
-import { ThemeContext } from "../utils/ThemeContext";
+import { ThemeContext } from "../utils/Context";
 
 export default function Pomodoro() {
 	// const [start, setStart] = useState(false);
@@ -54,9 +54,14 @@ export default function Pomodoro() {
 				data-theme={theme?.name}
 			>
 				{/* <div>Pomodoro</div> */}
-				<div className="text-white rounded-4xl px-4 text-xl" style={{
-					backgroundColor: "var(--color-primary)"
-				}}>{timerDisplay()}</div>
+				<div
+					className="text-white rounded-4xl px-4 text-xl"
+					style={{
+						backgroundColor: "var(--color-primary)",
+					}}
+				>
+					{timerDisplay()}
+				</div>
 				{/* <div>
 					{isBreak ? "Break Time" : "Focus Time"}:{" "}
 					{isBreak ? breakTime : focusTime} minutes
@@ -68,9 +73,12 @@ export default function Pomodoro() {
 					<button onClick={startOnClick}>Start Timer</button>
 				)} */}
 			</div>
-			<button className="self-center text-lg border-4 border-white w-fit rounded-4xl px-6" style={{
-				backgroundColor: "var(--color-secondary)"
-			}}>
+			<button
+				className="self-center text-lg border-4 border-white w-fit rounded-4xl px-6"
+				style={{
+					backgroundColor: "var(--color-secondary)",
+				}}
+			>
 				Set TO-MO
 			</button>
 		</div>

@@ -2,7 +2,8 @@
 
 import { useContext, useState } from "react";
 import DayView from "./DayView";
-import { ThemeContext } from "../utils/ThemeContext";
+import { TasksContext, ThemeContext } from "../utils/Context";
+import { Task } from "../utils/TaskType";
 
 export default function MonthView() {
 	const [month, setMonth] = useState(new Date().getMonth());
@@ -12,6 +13,7 @@ export default function MonthView() {
 	const lastMonth = new Date(year, month, 0);
 	const lastDateOfLastMonth = lastMonth.getDate();
 	const { theme } = useContext(ThemeContext);
+	const { tasks } = useContext(TasksContext);
 
 	function getDay(i: number) {
 		let day = i - firstDayOfWeek + 1;
@@ -27,15 +29,36 @@ export default function MonthView() {
 			dark = true;
 		}
 
-		return <DayView number={day} key={i} dark={dark} />;
+		let dayTasks: Task[] | undefined = [];
+
+		if (!(i < firstDayOfWeek)) {
+			dayTasks = tasks?.filter((task) => {
+				const taskDate = task.date.toLocaleDateString(undefined, {
+					day: "2-digit",
+					month: "2-digit",
+					year: "numeric",
+				});
+				const dayDate = new Date(year, month, day).toLocaleDateString(
+					undefined,
+					{
+						day: "2-digit",
+						month: "2-digit",
+						year: "numeric",
+					}
+				);
+				return taskDate === dayDate;
+			});
+		}
+
+		return <DayView number={day} key={i} dark={dark} tasks={dayTasks} />;
 	}
 
 	function decreaseMonth() {
-		if(month == 0) {
-			setYear(year-1)
-			setMonth(12)
+		if (month == 0) {
+			setYear(year - 1);
+			setMonth(12);
 		} else {
-			setMonth(month-1)
+			setMonth(month - 1);
 		}
 	}
 
@@ -50,14 +73,15 @@ export default function MonthView() {
 
 	return (
 		<div
-			className={`flex border-10 border-white rounded-3xl h-full w-full flex-col`}
+			className="flex border-10 border-white rounded-3xl h-full w-full flex-col"
 			data-theme={theme?.name}
 			style={{
 				backgroundColor: "var(--color-secondary)",
 			}}
 		>
+			{/* Month header - keep compact with h-fit */}
 			<div
-				className="text-center p-4 border-b-2 border-black h-fit text-2xl mx-4 flex-row flex justify-center space-x-10"
+				className="text-center p-2 border-b-2 border-black h-fit text-2xl mx-4 flex-row flex justify-center space-x-10"
 				style={{
 					color: "var(--color-primary)",
 				}}
@@ -75,11 +99,13 @@ export default function MonthView() {
 					{">"}
 				</button>
 			</div>
+
+			{/* Weekday header - keep compact */}
 			<div className="flex flex-row h-fit mx-4">
 				{Array.from({ length: 7 }, (_, i) => (
 					<div
 						key={i}
-						className="text-center border-b-2 border-black p-2 h-fit w-full text-2xl"
+						className="text-center border-b-2 border-black py-1 h-fit w-full text-xl"
 						style={{
 							color: "var(--color-primary)",
 						}}
@@ -88,7 +114,9 @@ export default function MonthView() {
 					</div>
 				))}
 			</div>
-			<div className="grid grid-cols-7 w-full h-full">
+
+			{/* Calendar grid - make it flex-grow to take remaining space */}
+			<div className="grid grid-cols-7 w-full flex-grow auto-rows-[minmax(0,0.5fr)] overflow-hidden">
 				{Array.from({ length: 42 }, (_, i) => getDay(i))}
 			</div>
 		</div>
