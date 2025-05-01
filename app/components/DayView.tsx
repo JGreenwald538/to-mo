@@ -1,7 +1,5 @@
-import { useContext } from "react";
 import { Task } from "../utils/TaskType";
 import SmallToDoItem from "./SmallToDoItem";
-import { TasksContext } from "../utils/Context";
 
 export default function DayView({
 	number,
@@ -39,8 +37,8 @@ export default function DayView({
 				</div>
 			</div>
 			<div className="overflow-scroll">
-				{tasks.map((task) => (
-					<SmallToDoItem task={task} />
+				{tasks.map((task, index) => (
+					<SmallToDoItem task={task} key={index}/>
 				))}
 			</div>
 		</div>
