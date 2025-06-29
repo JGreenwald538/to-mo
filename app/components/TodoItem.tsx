@@ -11,7 +11,7 @@ export default function TodoItem({ task }: { task: Task }) {
 			className="border-2 rounded-2xl"
 			style={{ borderColor: "var(--color-secondary)" }}
 			onClick={() => {
-				task.status = !task.status;
+				task.status = task.status === "Completed" ? "Incomplete" : "Completed";
 				if (setTasks && tasks) {
 					const tempTasks = [...tasks];
 					tempTasks[tasks.indexOf(task)] = task;

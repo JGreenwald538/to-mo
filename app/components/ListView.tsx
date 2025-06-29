@@ -1,6 +1,13 @@
 import { useContext } from "react";
 import { TasksContext } from "../utils/Context";
 import TodoItem from "./TodoItem";
+import AddTask from "./AddTask";
+import AddTaskButton from "./AddTaskButton";
+
+const taskTypeNames = {
+	misc: "Miscellaneous Task",
+	daily: "Daily Task",
+}
 
 export default function DayView({ type }: { type: string }) {
 	const { tasks: allTasks } = useContext(TasksContext);
@@ -43,16 +50,24 @@ export default function DayView({ type }: { type: string }) {
 					<TodoItem task={task} key={index} />
 				))}
 			</div>
-			<button
+			<AddTaskButton
 				className="text-white py-1 w-fit my-2 rounded-3xl px-8 self-center text-2xl border-4 border-white"
 				style={{
 					backgroundColor: "var(--color-secondary)",
 					color: "var(--color-primary)",
 					borderColor: "var(--color-quartenary)",
 				}}
+				task={{
+					name: "",
+					date: new Date(),
+					minutes: 0,
+					type: type === "day" ? "" : taskTypeNames[type as keyof typeof taskTypeNames] || "",
+					status: "",
+					description: "",
+				}}
 			>
 				Add Task
-			</button>
+			</AddTaskButton>
 		</div>
 	);
 }

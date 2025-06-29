@@ -16,3 +16,8 @@ export const TasksContext = createContext<{
 	tasks: Task[] | null;
 	setTasks: Dispatch<SetStateAction<Task[]>> | null;
 }>({ tasks: null, setTasks: null });
+
+export const TaskToEditContext = createContext<{
+	taskToEdit: Task | null;
+	setTaskToEdit: Dispatch<SetStateAction<Task | null>> | null;
+}>({ taskToEdit: null, setTaskToEdit: null });

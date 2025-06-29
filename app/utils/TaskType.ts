@@ -3,6 +3,6 @@ export type Task = {
     date: Date,
     minutes: number,
     type: string,
-    status: boolean,
+    status: string,
     description: string;
 }

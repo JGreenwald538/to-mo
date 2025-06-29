@@ -1,14 +1,17 @@
 import { Task } from "../utils/TaskType";
+import AddTaskButton from "./AddTaskButton";
 import SmallToDoItem from "./SmallToDoItem";
 
 export default function DayView({
 	number,
 	dark,
 	tasks = [],
+	date,
 }: {
 	number: number;
 	tasks?: Task[];
 	dark?: boolean;
+	date: Date;
 }) {
 	return (
 		<div
@@ -19,14 +22,22 @@ export default function DayView({
 			}
 		>
 			<div className="flex justify-between w-full">
-				<div
+				<AddTaskButton
 					style={{
 						color: "var(--color-primary)",
 					}}
 					className="text-2xl"
+					task={{
+						name: "",
+						date: date,
+						minutes: 0,
+						type: "",
+						status: "",
+						description: "",
+					}}
 				>
 					+
-				</div>
+				</AddTaskButton>
 				<div
 					style={{
 						color: "var(--color-primary)",
