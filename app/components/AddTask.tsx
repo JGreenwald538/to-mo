@@ -15,18 +15,17 @@ export default function AddTask() {
 	const [type, setType] = useState(taskToEdit ? taskToEdit.type : "");
 	const [duration, setDuration] = useState(taskToEdit ? taskToEdit.minutes : 0);
 	const [status, setStatus] = useState(taskToEdit ? taskToEdit.status : "");
-	const [description, setDescription] = useState(taskToEdit ? taskToEdit.description : "");
+	const [description, setDescription] = useState(
+		taskToEdit ? taskToEdit.description : ""
+	);
 	const { tasks, setTasks } = useContext(TasksContext);
+
 	return (
 		<FullscreenDarkBG>
 			<button
 				className="w-full h-full absolute top-0 left-0"
 				onClick={() => {
-					if (setTaskToEdit) {
-						setTaskToEdit(null);
-					}
 					if (tasks && setTasks) {
-						console.log(date);
 						const newTask = {
 							name: name === "" ? "New Task" : name,
 							date,
@@ -37,6 +36,9 @@ export default function AddTask() {
 						};
 						const updatedTasks = [...tasks, newTask];
 						setTasks(updatedTasks);
+					}
+					if (setTaskToEdit) {
+						setTaskToEdit(null);
 					}
 				}}
 			/>
@@ -82,7 +84,11 @@ export default function AddTask() {
 						</div>
 						<div className="flex flex-col">
 							<div className="ml-2">Status</div>
-							<Dropdown  options={statusOfTasks} setOption={setStatus} selectedValue={status} />
+							<Dropdown
+								options={statusOfTasks}
+								setOption={setStatus}
+								selectedValue={status}
+							/>
 						</div>
 					</div>
 				</div>

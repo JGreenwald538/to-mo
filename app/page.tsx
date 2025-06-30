@@ -1,11 +1,16 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ListView from "./components/ListView";
 import MonthView from "./components/MonthView";
 import Pomodoro from "./components/Pomodoro";
 import { Theme } from "./utils/Theme";
-import { ThemeContext, FocusLengthContext, TasksContext, TaskToEditContext } from "./utils/Context";
+import {
+	ThemeContext,
+	FocusLengthContext,
+	TasksContext,
+	TaskToEditContext,
+} from "./utils/Context";
 import DailyAffirmations from "./components/DailyAffirmations";
 import { Task } from "./utils/TaskType";
 import AddTask from "./components/AddTask";
@@ -51,6 +56,29 @@ export default function Home() {
 	const [focusLength, setFocusLength] = useState(25);
 	const [tasks, setTasks] = useState([...miscTasks, ...dailyTasks]);
 	const [taskToEdit, setTaskToEdit] = useState<Task | null>(null);
+
+	useEffect(() => {
+		const fetchTasks = async () => {
+			const storedTasks = localStorage.getItem("tasks");
+			if (storedTasks) {
+				setTasks(
+					JSON.parse(storedTasks).map((task: Task) => ({
+						...task,
+						date: new Date(task.date),
+					}))
+				);
+			}
+		};
+		fetchTasks();
+	}, []);
+
+	useEffect(() => {
+		if (tasks) {
+			console.log("Tasks updated:", tasks);
+			localStorage.setItem("tasks", JSON.stringify(tasks));
+		}
+	}, [tasks]);
+
 	return (
 		<ThemeContext.Provider value={{ theme, setTheme }}>
 			<FocusLengthContext.Provider value={{ focusLength, setFocusLength }}>

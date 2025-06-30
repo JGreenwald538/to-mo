@@ -16,7 +16,7 @@ export default function AddTaskButton({
     const { setTaskToEdit } = useContext(TaskToEditContext);
 	return (
 		<button
-			className={className}
+			className={`hover:cursor-pointer ${className}`}
 			onClick={() => {
                 if(setTaskToEdit) {
 					setTaskToEdit(task);
