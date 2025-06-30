@@ -1,5 +1,3 @@
-import TodoItem from "./TodoItem";
-
 export default function DayView() {
 	return (
 		<div className="border-2 border-gray-300 h-auto rounded-xl flex flex-col mx-8 max-h-[70vh] justify-self-end">

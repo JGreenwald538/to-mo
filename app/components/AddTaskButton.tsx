@@ -18,7 +18,9 @@ export default function AddTaskButton({
 		<button
 			className={className}
 			onClick={() => {
-                setTaskToEdit && setTaskToEdit(task);
+                if(setTaskToEdit) {
+					setTaskToEdit(task);
+				}
 			}}
             style={style}
 		>

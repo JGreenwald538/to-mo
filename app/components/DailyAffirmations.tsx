@@ -32,7 +32,7 @@ export default function DailyAffirmations() {
 		};
 
 		fetchAffirmation();
-	}, []); // Empty dependency array means it only runs once
+	}, [loading]); // Empty dependency array means it only runs once
 
 	return (
 		<div className="px-4 rounded-3xl bg-white shadow-md text-center border-4 text-white text-2xl" style={{

@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { TasksContext } from "../utils/Context";
 import TodoItem from "./TodoItem";
-import AddTask from "./AddTask";
 import AddTaskButton from "./AddTaskButton";
 
 const taskTypeNames = {

@@ -1,4 +1,4 @@
-import { Children, JSX, ReactElement } from "react";
+import { JSX } from "react";
 
 export default function FullscreenDarkBG({
 	children,
