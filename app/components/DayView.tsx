@@ -18,7 +18,7 @@ export default function DayView({
 			className={
 				`flex` +
 				(dark ? " opacity-50 " : " ") +
-				`p-2 bg-white rounded-3xl mx-4 my-3 px-4 overflow-scroll flex-col`
+				`md:p-2 p-0 bg-white md:rounded-3xl rounded-lg md:mx-4 mx-1 md:my-3 my-1 md:px-4 overflow-scroll flex-col`
 			}
 		>
 			<div className="flex justify-between w-full">

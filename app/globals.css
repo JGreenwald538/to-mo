@@ -38,12 +38,4 @@ body {
     --color-tertiary: #DEEEF4;
     --color-quartenary: #92B3C4;
   }
-
-  [data-theme='rainforest'] {
-    --color-primary: #56d0a0;
-  }
-
-  [data-theme='candy'] {
-    --color-primary: #f9a8d4;
-  }
 }

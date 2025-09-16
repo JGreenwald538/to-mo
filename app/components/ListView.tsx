@@ -20,7 +20,7 @@ export default function DayView({ type }: { type: string }) {
 
 	return (
 		<div
-			className="border-10 border-gray-300 rounded-4xl flex flex-col justify-self-end overflow-scroll h-full items-center w-52"
+			className="border-10 border-gray-300 rounded-4xl flex flex-col justify-self-end overflow-scroll h-full items-center"
 			style={{
 				backgroundColor: "var(--color-primary)",
 				borderColor: "var(--color-secondary)",
@@ -40,7 +40,7 @@ export default function DayView({ type }: { type: string }) {
 				}) : type.substring(0, 1).toUpperCase() + type.substring(1)}
 			</div>
 			<div
-				className="flex flex-col overflow-y-scroll h-full my-4 flex-1 space-y-4"
+				className="flex flex-col overflow-y-scroll h-full my-4 flex-1 space-y-4 mx-4"
 				style={{
 					scrollbarColor: "var(--color-secondary)",
 				}}
@@ -50,7 +50,7 @@ export default function DayView({ type }: { type: string }) {
 				))}
 			</div>
 			<AddTaskButton
-				className="text-white py-1 w-fit my-2 rounded-3xl px-8 self-center text-2xl border-4 border-white"
+				className="text-white py-1 w-fit my-2 rounded-3xl px-8 self-center text-2xl border-4 border-white mx-4"
 				style={{
 					backgroundColor: "var(--color-secondary)",
 					color: "var(--color-primary)",

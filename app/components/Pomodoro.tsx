@@ -47,6 +47,8 @@ export default function Pomodoro() {
 
 	const { theme } = useContext(ThemeContext);
 
+	console.log(theme?.setTomoProperty);
+
 	return (
 		<div className="flex flex-col space-y-2 mb-4">
 			<div
@@ -55,7 +57,7 @@ export default function Pomodoro() {
 			>
 				{/* <div>Pomodoro</div> */}
 				<div
-					className="text-white rounded-4xl px-4 text-xl"
+					className={`text-white rounded-4xl px-4 py-1 text-xl ${theme?.setTomoProperty}`}
 					style={{
 						backgroundColor: "var(--color-primary)",
 					}}
@@ -74,9 +76,10 @@ export default function Pomodoro() {
 				)} */}
 			</div>
 			<button
-				className="self-center text-lg border-4 border-white w-fit rounded-4xl px-6"
+				className={`self-center text-lg border-4 border-white w-fit rounded-4xl px-6 hover:cursor-pointer`}
 				style={{
 					backgroundColor: "var(--color-secondary)",
+					color: "var(--color-primary)",
 				}}
 			>
 				Set TO-MO

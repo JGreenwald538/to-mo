@@ -9,7 +9,7 @@ export default function TodoItem({ task }: { task: Task }) {
 	return (
 		<div
 			className="border-2 rounded-2xl"
-			style={{ borderColor: "var(--color-secondary)" }}
+			style={{ borderColor: "var(--color-secondary)", color: "var(--color-primary)" }}
 			onClick={() => {
 				task.status = task.status === "Completed" ? "Incomplete" : "Completed";
 				if (setTasks && tasks) {
@@ -20,7 +20,7 @@ export default function TodoItem({ task }: { task: Task }) {
 			}}
 		>
 			<div
-				className="w-40 p-1 mt-4 first:mt-0 rounded-2xl border-1 flex justify-between"
+				className="p-1 mt-4 first:mt-0 rounded-2xl border-1 flex justify-between lg:w-40 md:w-52 sm:w-36 w-64"
 				style={{
 					backgroundColor: "var(--color-secondary)",
 					borderColor: "var(--color-primary)",

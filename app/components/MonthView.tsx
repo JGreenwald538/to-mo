@@ -35,13 +35,12 @@ export default function MonthView() {
 		let dayTasks: Task[] | undefined = [];
 
 		if (!(i < firstDayOfWeek)) {
-			const dayDate = new Date(year, month, day).toLocaleDateString(undefined, {
+			const dayDate = date.toLocaleDateString(undefined, {
 				day: "2-digit",
 				month: "2-digit",
 				year: "numeric",
 			});
 			dayTasks = tasks?.filter((task) => {
-				console.log(typeof task.date);
 				const taskDate = task.date.toLocaleDateString(undefined, {
 					day: "2-digit",
 					month: "2-digit",
