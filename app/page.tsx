@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import ListView from "./components/ListView";
 import MonthView from "./components/MonthView";
 import Pomodoro from "./components/Pomodoro";
-import { Theme } from "./utils/Theme";
 import {
 	ThemeContext,
 	FocusLengthContext,
